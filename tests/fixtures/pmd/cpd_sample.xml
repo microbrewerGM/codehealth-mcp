@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><pmd-cpd pmdVersion="7.29.0" timestamp="2026-11-11T11:20:08.909083-08:00" version="1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://pmd-code.org/schema/cpd-report https://pmd.github.io/schema/cpd-report_1_0_0.xsd" xmlns="https://pmd-code.org/schema/cpd-report">
+    <file path="/work/a.js" totalNumberOfTokens="132"/>
+    <file path="/work/b.js" totalNumberOfTokens="66"/>
+    <duplication lines="13" tokens="64">
+        <file begintoken="2" column="17" endcolumn="2" endline="13" endtoken="65" line="1" path="/work/a.js"/>
+        <file begintoken="68" column="22" endcolumn="2" endline="27" endtoken="131" line="15" path="/work/a.js"/>
+        <file begintoken="135" column="16" endcolumn="2" endline="13" endtoken="198" line="1" path="/work/b.js"/>
+        <codefragment><![CDATA[function sumEven(values) {
+  let total = 0;
+  for (const v of values) {
+    if (v % 2 === 0) {
+      total += v * 2;
+    } else {
+      total -= 1;
+    }
+  }
+  const count = values.length;
+  const first = values[0];
+  return total + count + first;
+}
+]]></codefragment>
+    </duplication>
+</pmd-cpd>

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "codehealth": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/microbrewerGM/codehealth-mcp", "codehealth-mcp"]
+    }
+  }
+}

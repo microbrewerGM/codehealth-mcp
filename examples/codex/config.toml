@@ -1,0 +1,8 @@
+# Append to ~/.codex/config.toml (or .codex/config.toml in a trusted project).
+[mcp_servers.codehealth]
+command = "uvx"
+args = ["--from", "git+https://github.com/microbrewerGM/codehealth-mcp", "codehealth-mcp"]
+startup_timeout_sec = 60
+tool_timeout_sec = 300
+# Optional: forward PMD/Java settings from your shell.
+env_vars = ["CODEHEALTH_PMD_HOME", "JAVA_HOME"]

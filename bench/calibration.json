@@ -1,0 +1,362 @@
+{
+  "timestamp": "2026-11-11T20:56:19Z",
+  "n": 290,
+  "folds": 5,
+  "seed": 0,
+  "objective": "UC2 F1 + AUC at threshold 9.0 on training folds",
+  "defaults": {
+    "params": {
+      "K": 0.15,
+      "FUNCTION_PENALTY_CAP": 6.0,
+      "FILE_SIZE_WEIGHT": 0.5,
+      "SMELL_IMPACT": {
+        "Brain Class": 3.0,
+        "Brain Method": 3.0,
+        "Bumpy Road Ahead": 1.5,
+        "Code Duplication": 1.0,
+        "Complex Conditional": 0.75,
+        "Complex Method": 1.0,
+        "Constructor Over-Injection": 0.75,
+        "Deep, Nested Complexity": 1.5,
+        "Excess Number of Function Arguments": 0.75,
+        "Large Method": 1.0,
+        "Lines of Code in a Single File": 2.0,
+        "Low Cohesion": 1.5,
+        "Number of Functions in a Single Module": 1.0,
+        "Overall Code Complexity": 1.0
+      }
+    },
+    "metrics": {
+      "uc1": {
+        "accuracy": 0.9413793103448276,
+        "precision": 0.9568965517241379,
+        "recall": 0.9694323144104804,
+        "f1": 0.9631236442516269,
+        "tp": 222,
+        "fp": 10,
+        "fn": 7,
+        "tn": 51
+      },
+      "uc2": {
+        "precision": 0.8793103448275862,
+        "recall": 0.8360655737704918,
+        "f1": 0.8571428571428572,
+        "f0_5": 0.8703071672354947
+      },
+      "auc": 0.9754456296084186
+    }
+  },
+  "cv": {
+    "pooled": {
+      "uc1": {
+        "accuracy": 0.9379310344827586,
+        "precision": 0.9606986899563319,
+        "recall": 0.9606986899563319,
+        "f1": 0.9606986899563319,
+        "tp": 220,
+        "fp": 9,
+        "fn": 9,
+        "tn": 52
+      },
+      "uc2": {
+        "precision": 0.8524590163934426,
+        "recall": 0.8524590163934426,
+        "f1": 0.8524590163934426,
+        "f0_5": 0.8524590163934426
+      },
+      "auc": 0.9727611138950534
+    },
+    "per_fold_uc2_f1": [
+      0.9230769230769231,
+      0.8695652173913043,
+      0.6956521739130435,
+      0.8461538461538461,
+      0.9166666666666666
+    ],
+    "per_fold_auc": [
+      0.9765886287625418,
+      0.9710144927536232,
+      0.9565217391304348,
+      0.9873188405797102,
+      0.9805555555555555
+    ],
+    "mean_uc2_f1": 0.8502229654403568,
+    "mean_auc": 0.9743998513563732,
+    "fold_params": [
+      {
+        "K": 0.2,
+        "FUNCTION_PENALTY_CAP": 6.0,
+        "FILE_SIZE_WEIGHT": 1.5,
+        "SMELL_IMPACT": {
+          "Brain Class": 0.75,
+          "Brain Method": 0.0,
+          "Bumpy Road Ahead": 0.25,
+          "Code Duplication": 6.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 1.0,
+          "Constructor Over-Injection": 6.0,
+          "Deep, Nested Complexity": 1.5,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 0.25
+        }
+      },
+      {
+        "K": 0.15,
+        "FUNCTION_PENALTY_CAP": 2.0,
+        "FILE_SIZE_WEIGHT": 1.5,
+        "SMELL_IMPACT": {
+          "Brain Class": 2.0,
+          "Brain Method": 3.0,
+          "Bumpy Road Ahead": 1.5,
+          "Code Duplication": 0.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 1.5,
+          "Constructor Over-Injection": 4.0,
+          "Deep, Nested Complexity": 1.5,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.25,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 1.5
+        }
+      },
+      {
+        "K": 0.15,
+        "FUNCTION_PENALTY_CAP": 2.0,
+        "FILE_SIZE_WEIGHT": 2.0,
+        "SMELL_IMPACT": {
+          "Brain Class": 0.25,
+          "Brain Method": 0.0,
+          "Bumpy Road Ahead": 0.0,
+          "Code Duplication": 0.25,
+          "Complex Conditional": 0.5,
+          "Complex Method": 1.5,
+          "Constructor Over-Injection": 4.0,
+          "Deep, Nested Complexity": 1.5,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 0.25
+        }
+      },
+      {
+        "K": 0.2,
+        "FUNCTION_PENALTY_CAP": 6.0,
+        "FILE_SIZE_WEIGHT": 1.5,
+        "SMELL_IMPACT": {
+          "Brain Class": 0.75,
+          "Brain Method": 3.0,
+          "Bumpy Road Ahead": 0.0,
+          "Code Duplication": 0.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 0.75,
+          "Constructor Over-Injection": 6.0,
+          "Deep, Nested Complexity": 6.0,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 1.0
+        }
+      },
+      {
+        "K": 0.2,
+        "FUNCTION_PENALTY_CAP": 4.0,
+        "FILE_SIZE_WEIGHT": 0.5,
+        "SMELL_IMPACT": {
+          "Brain Class": 1.5,
+          "Brain Method": 0.25,
+          "Bumpy Road Ahead": 1.0,
+          "Code Duplication": 0.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 1.5,
+          "Constructor Over-Injection": 6.0,
+          "Deep, Nested Complexity": 2.0,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 6.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 0.75
+        }
+      }
+    ]
+  },
+  "leave_one_project_out": {
+    "projects": [
+      "aoi",
+      "argoUML",
+      "jsweet",
+      "junit4"
+    ],
+    "pooled": {
+      "uc1": {
+        "accuracy": 0.9103448275862069,
+        "precision": 0.9356223175965666,
+        "recall": 0.9519650655021834,
+        "f1": 0.9437229437229437,
+        "tp": 218,
+        "fp": 15,
+        "fn": 11,
+        "tn": 46
+      },
+      "uc2": {
+        "precision": 0.8070175438596491,
+        "recall": 0.7540983606557377,
+        "f1": 0.7796610169491526,
+        "f0_5": 0.795847750865052
+      },
+      "auc": 0.9633116185840075
+    },
+    "per_fold_uc2_f1": [
+      0.8285714285714285,
+      0.7027027027027029,
+      0.888888888888889,
+      0.0
+    ],
+    "per_fold_auc": [
+      0.96,
+      0.9491525423728814,
+      1.0,
+      0.9305555555555556
+    ],
+    "mean_uc2_f1": 0.605040755040755,
+    "mean_auc": 0.9599270244821092,
+    "fold_params": [
+      {
+        "K": 0.1,
+        "FUNCTION_PENALTY_CAP": 1.0,
+        "FILE_SIZE_WEIGHT": 0.5,
+        "SMELL_IMPACT": {
+          "Brain Class": 2.0,
+          "Brain Method": 0.0,
+          "Bumpy Road Ahead": 0.25,
+          "Code Duplication": 0.0,
+          "Complex Conditional": 0.75,
+          "Complex Method": 0.5,
+          "Constructor Over-Injection": 0.75,
+          "Deep, Nested Complexity": 1.5,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 1.5
+        }
+      },
+      {
+        "K": 0.2,
+        "FUNCTION_PENALTY_CAP": 6.0,
+        "FILE_SIZE_WEIGHT": 0.25,
+        "SMELL_IMPACT": {
+          "Brain Class": 3.0,
+          "Brain Method": 3.0,
+          "Bumpy Road Ahead": 1.5,
+          "Code Duplication": 1.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 1.5,
+          "Constructor Over-Injection": 6.0,
+          "Deep, Nested Complexity": 2.0,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 4.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 1.0
+        }
+      },
+      {
+        "K": 0.2,
+        "FUNCTION_PENALTY_CAP": 2.0,
+        "FILE_SIZE_WEIGHT": 1.5,
+        "SMELL_IMPACT": {
+          "Brain Class": 0.75,
+          "Brain Method": 0.0,
+          "Bumpy Road Ahead": 0.5,
+          "Code Duplication": 0.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 0.75,
+          "Constructor Over-Injection": 6.0,
+          "Deep, Nested Complexity": 2.0,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.0,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 0.75
+        }
+      },
+      {
+        "K": 0.2,
+        "FUNCTION_PENALTY_CAP": 6.0,
+        "FILE_SIZE_WEIGHT": 1.0,
+        "SMELL_IMPACT": {
+          "Brain Class": 1.5,
+          "Brain Method": 0.75,
+          "Bumpy Road Ahead": 0.75,
+          "Code Duplication": 0.0,
+          "Complex Conditional": 0.0,
+          "Complex Method": 1.0,
+          "Constructor Over-Injection": 6.0,
+          "Deep, Nested Complexity": 6.0,
+          "Excess Number of Function Arguments": 0.0,
+          "Large Method": 0.25,
+          "Lines of Code in a Single File": 2.0,
+          "Low Cohesion": 0.0,
+          "Number of Functions in a Single Module": 1.0,
+          "Overall Code Complexity": 0.0
+        }
+      }
+    ]
+  },
+  "recommended": {
+    "params": {
+      "K": 0.2,
+      "FUNCTION_PENALTY_CAP": 2.0,
+      "FILE_SIZE_WEIGHT": 1.5,
+      "SMELL_IMPACT": {
+        "Brain Class": 0.75,
+        "Brain Method": 0.0,
+        "Bumpy Road Ahead": 0.5,
+        "Code Duplication": 0.0,
+        "Complex Conditional": 0.0,
+        "Complex Method": 0.75,
+        "Constructor Over-Injection": 6.0,
+        "Deep, Nested Complexity": 2.0,
+        "Excess Number of Function Arguments": 0.0,
+        "Large Method": 0.0,
+        "Lines of Code in a Single File": 2.0,
+        "Low Cohesion": 0.0,
+        "Number of Functions in a Single Module": 1.0,
+        "Overall Code Complexity": 0.5
+      }
+    },
+    "in_sample_metrics": {
+      "uc1": {
+        "accuracy": 0.9620689655172414,
+        "precision": 0.9698275862068966,
+        "recall": 0.982532751091703,
+        "f1": 0.9761388286334056,
+        "tp": 225,
+        "fp": 7,
+        "fn": 4,
+        "tn": 54
+      },
+      "uc2": {
+        "precision": 0.9310344827586207,
+        "recall": 0.8852459016393442,
+        "f1": 0.9075630252100839,
+        "f0_5": 0.9215017064846416
+      },
+      "auc": 0.9838929057198081
+    }
+  }
+}

@@ -1,0 +1,51 @@
+# Python build and caches
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Editors and OS (example harness configs live under examples/)
+.idea/
+.vscode/
+.cursor/
+.kiro/
+.DS_Store
+
+# PMD installs (codehealth install-pmd --dir ...)
+/tools/
+/pmd/
+/pmd-bin-*/
+
+# Benchmark data and caches (see bench/README.md; never committed)
+/data/
+/sources/
+*.csv
+bench/.cache/
+
+# Bundles and build outputs
+*.mcpb
+mcpb-build/
+
+# Secrets, logs, local agent state, scratch
+.env
+.env.*
+*.log
+.playwright-mcp/
+.claude/settings.local.json
+.claude/*.local.*
+scratch/
+.scratch/
+/bench/data/
+/bench/sources/
+
+# Private working material kept outside this public repo
+research/
+legal/

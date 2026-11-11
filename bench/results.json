@@ -1,0 +1,457 @@
+{
+  "timestamp": "2026-11-11T22:42:57Z",
+  "constants": {
+    "K": 0.15,
+    "FUNCTION_PENALTY_CAP": 6.0,
+    "FILE_SIZE_WEIGHT": 0.5,
+    "SMELL_IMPACT": {
+      "Brain Method": 3.0,
+      "Complex Method": 1.0,
+      "Large Method": 1.0,
+      "Deep, Nested Complexity": 1.5,
+      "Bumpy Road Ahead": 1.5,
+      "Complex Conditional": 0.75,
+      "Excess Number of Function Arguments": 0.75,
+      "Constructor Over-Injection": 0.75,
+      "Lines of Code in a Single File": 2.0,
+      "Number of Functions in a Single Module": 1.0,
+      "Low Cohesion": 1.5,
+      "Brain Class": 3.0,
+      "Code Duplication": 1.0,
+      "Overall Code Complexity": 1.0
+    }
+  },
+  "sources": {
+    "projects": {
+      "argoUML": {
+        "label": "month-2020-09",
+        "commit": "6f06c727a17176556cde6e7edf255394e2334582",
+        "date": "2020-09-27",
+        "repo": "https://github.com/argouml-tigris-org/argouml",
+        "rows": 74,
+        "found": 74,
+        "missing": 0,
+        "loc_exact": 7,
+        "loc_within_10pct": 36,
+        "missing_classes": []
+      },
+      "aoi": {
+        "label": "spm-bad",
+        "commit": "c1aac96fa2f5cbd9ee90dd8e56d5e526e3d3be0f",
+        "date": "2018-12-14",
+        "repo": "https://github.com/ArtOfIllusion/ArtOfIllusion",
+        "rows": 73,
+        "found": 70,
+        "missing": 3,
+        "loc_exact": 0,
+        "loc_within_10pct": 13,
+        "missing_classes": [
+          "nik777.aoi.HelpPlugin",
+          "nik777.chat.ChatTextPane",
+          "nik777.xlate.StringEditor"
+        ]
+      },
+      "jsweet": {
+        "label": "3.0.0-RC4",
+        "commit": "4124c8f7320a18fcf9cba2cdb89c478cbe89dc82",
+        "date": "2020-09-08",
+        "repo": "https://github.com/cincheo/jsweet",
+        "rows": 73,
+        "found": 73,
+        "missing": 0,
+        "loc_exact": 35,
+        "loc_within_10pct": 48,
+        "missing_classes": []
+      },
+      "junit4": {
+        "label": "r4.12",
+        "commit": "64155f8a9babcfcf4263cf4d08253a1556e75481",
+        "date": "2014-12-04",
+        "repo": "https://github.com/junit-team/junit4",
+        "rows": 73,
+        "found": 73,
+        "missing": 0,
+        "loc_exact": 5,
+        "loc_within_10pct": 28,
+        "missing_classes": []
+      }
+    },
+    "errors": [],
+    "excluded": {
+      "diarymanagement": {
+        "rows": 11,
+        "reason": "not publicly available"
+      }
+    },
+    "runtime_seconds": 17.2
+  },
+  "metrics": {
+    "n": 290,
+    "maintainable": 229,
+    "ours": {
+      "uc1": {
+        "accuracy": 0.9413793103448276,
+        "precision": 0.9568965517241379,
+        "recall": 0.9694323144104804,
+        "f1": 0.9631236442516269,
+        "tp": 222,
+        "fp": 10,
+        "fn": 7,
+        "tn": 51
+      },
+      "uc2": {
+        "precision": 0.8793103448275862,
+        "recall": 0.8360655737704918,
+        "f1": 0.8571428571428572,
+        "f0_5": 0.8703071672354947
+      },
+      "auc": 0.9754456296084186
+    },
+    "baseline_reference_ge_9": {
+      "uc1": {
+        "accuracy": 0.9379310344827586,
+        "precision": 0.9451476793248945,
+        "recall": 0.9781659388646288,
+        "f1": 0.9613733905579398,
+        "tp": 224,
+        "fp": 13,
+        "fn": 5,
+        "tn": 48
+      },
+      "uc2": {
+        "precision": 0.9056603773584906,
+        "recall": 0.7868852459016393,
+        "f1": 0.8421052631578947,
+        "f0_5": 0.8791208791208791
+      },
+      "auc": 0.9625241606414203
+    },
+    "baseline_loc_le_275": {
+      "uc1": {
+        "accuracy": 0.9241379310344827,
+        "precision": 0.9330543933054394,
+        "recall": 0.9737991266375546,
+        "f1": 0.952991452991453,
+        "tp": 223,
+        "fp": 16,
+        "fn": 6,
+        "tn": 45
+      },
+      "uc2": {
+        "precision": 0.8823529411764706,
+        "recall": 0.7377049180327869,
+        "f1": 0.8035714285714285,
+        "f0_5": 0.8490566037735849
+      },
+      "auc": 0.965638198868924,
+      "n": 290
+    },
+    "spearman_vs_reference": 0.8710251318704518,
+    "spearman_vs_human": {
+      "Overall": -0.8235584988741432,
+      "Readability": -0.6683252393145059,
+      "Understandability": -0.7342757088204174,
+      "Complexity_inv": 0.8030688279196194,
+      "Modularization_inv": 0.8265457256604238
+    },
+    "spearman_reference_vs_human_overall": -0.79011192458865,
+    "per_project": {
+      "argoUML": {
+        "n": 74,
+        "maintainable": 59,
+        "ours": {
+          "uc1": {
+            "accuracy": 0.9054054054054054,
+            "precision": 0.9642857142857143,
+            "recall": 0.9152542372881356,
+            "f1": 0.9391304347826087,
+            "tp": 54,
+            "fp": 2,
+            "fn": 5,
+            "tn": 13
+          },
+          "uc2": {
+            "precision": 0.7222222222222222,
+            "recall": 0.8666666666666667,
+            "f1": 0.7878787878787877,
+            "f0_5": 0.7471264367816092
+          },
+          "auc": 0.9480225988700565
+        },
+        "reference": {
+          "uc1": {
+            "accuracy": 0.9054054054054054,
+            "precision": 0.9333333333333333,
+            "recall": 0.9491525423728814,
+            "f1": 0.9411764705882353,
+            "tp": 56,
+            "fp": 4,
+            "fn": 3,
+            "tn": 11
+          },
+          "uc2": {
+            "precision": 0.7857142857142857,
+            "recall": 0.7333333333333333,
+            "f1": 0.7586206896551724,
+            "f0_5": 0.7746478873239436
+          },
+          "auc": 0.9508474576271186
+        }
+      },
+      "aoi": {
+        "n": 70,
+        "maintainable": 30,
+        "ours": {
+          "uc1": {
+            "accuracy": 0.9,
+            "precision": 0.8285714285714286,
+            "recall": 0.9666666666666667,
+            "f1": 0.8923076923076922,
+            "tp": 29,
+            "fp": 6,
+            "fn": 1,
+            "tn": 34
+          },
+          "uc2": {
+            "precision": 0.9714285714285714,
+            "recall": 0.85,
+            "f1": 0.9066666666666667,
+            "f0_5": 0.9444444444444444
+          },
+          "auc": 0.9708333333333333
+        },
+        "reference": {
+          "uc1": {
+            "accuracy": 0.8714285714285714,
+            "precision": 0.8,
+            "recall": 0.9333333333333333,
+            "f1": 0.8615384615384616,
+            "tp": 28,
+            "fp": 7,
+            "fn": 2,
+            "tn": 33
+          },
+          "uc2": {
+            "precision": 0.9428571428571428,
+            "recall": 0.825,
+            "f1": 0.88,
+            "f0_5": 0.9166666666666666
+          },
+          "auc": 0.9420833333333334
+        }
+      },
+      "jsweet": {
+        "n": 73,
+        "maintainable": 68,
+        "ours": {
+          "uc1": {
+            "accuracy": 0.9863013698630136,
+            "precision": 0.9855072463768116,
+            "recall": 1.0,
+            "f1": 0.9927007299270074,
+            "tp": 68,
+            "fp": 1,
+            "fn": 0,
+            "tn": 4
+          },
+          "uc2": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.888888888888889,
+            "f0_5": 0.9523809523809523
+          },
+          "auc": 0.9970588235294118
+        },
+        "reference": {
+          "uc1": {
+            "accuracy": 0.9863013698630136,
+            "precision": 0.9855072463768116,
+            "recall": 1.0,
+            "f1": 0.9927007299270074,
+            "tp": 68,
+            "fp": 1,
+            "fn": 0,
+            "tn": 4
+          },
+          "uc2": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.888888888888889,
+            "f0_5": 0.9523809523809523
+          },
+          "auc": 0.9
+        }
+      },
+      "junit4": {
+        "n": 73,
+        "maintainable": 72,
+        "ours": {
+          "uc1": {
+            "accuracy": 0.9726027397260274,
+            "precision": 0.9861111111111112,
+            "recall": 0.9861111111111112,
+            "f1": 0.9861111111111112,
+            "tp": 71,
+            "fp": 1,
+            "fn": 1,
+            "tn": 0
+          },
+          "uc2": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "f0_5": 0.0
+          },
+          "auc": 0.8611111111111112
+        },
+        "reference": {
+          "uc1": {
+            "accuracy": 0.9863013698630136,
+            "precision": 0.9863013698630136,
+            "recall": 1.0,
+            "f1": 0.993103448275862,
+            "tp": 72,
+            "fp": 1,
+            "fn": 0,
+            "tn": 0
+          },
+          "uc2": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "f0_5": 0.0
+          },
+          "auc": 0.8888888888888888
+        }
+      }
+    }
+  },
+  "smells": [
+    {
+      "smell": "Complex Method",
+      "maintainable_files": 10,
+      "maintainable_rate": 0.043668122270742356,
+      "non_maintainable_files": 44,
+      "non_maintainable_rate": 0.7213114754098361,
+      "lift": 16.518032786885247,
+      "total_penalty": 45.39300000000002
+    },
+    {
+      "smell": "Overall Code Complexity",
+      "maintainable_files": 7,
+      "maintainable_rate": 0.03056768558951965,
+      "non_maintainable_files": 35,
+      "non_maintainable_rate": 0.5737704918032787,
+      "lift": 18.770491803278688,
+      "total_penalty": 19.715000000000007
+    },
+    {
+      "smell": "Deep, Nested Complexity",
+      "maintainable_files": 3,
+      "maintainable_rate": 0.013100436681222707,
+      "non_maintainable_files": 38,
+      "non_maintainable_rate": 0.6229508196721312,
+      "lift": 47.551912568306015,
+      "total_penalty": 38.82
+    },
+    {
+      "smell": "Complex Conditional",
+      "maintainable_files": 11,
+      "maintainable_rate": 0.048034934497816595,
+      "non_maintainable_files": 28,
+      "non_maintainable_rate": 0.45901639344262296,
+      "lift": 9.555886736214605,
+      "total_penalty": 17.509500000000006
+    },
+    {
+      "smell": "Brain Class",
+      "maintainable_files": 6,
+      "maintainable_rate": 0.026200873362445413,
+      "non_maintainable_files": 31,
+      "non_maintainable_rate": 0.5081967213114754,
+      "lift": 19.39617486338798,
+      "total_penalty": 62.27700000000001
+    },
+    {
+      "smell": "Large Method",
+      "maintainable_files": 2,
+      "maintainable_rate": 0.008733624454148471,
+      "non_maintainable_files": 35,
+      "non_maintainable_rate": 0.5737704918032787,
+      "lift": 65.69672131147541,
+      "total_penalty": 26.496999999999996
+    },
+    {
+      "smell": "Bumpy Road Ahead",
+      "maintainable_files": 6,
+      "maintainable_rate": 0.026200873362445413,
+      "non_maintainable_files": 28,
+      "non_maintainable_rate": 0.45901639344262296,
+      "lift": 17.51912568306011,
+      "total_penalty": 25.954500000000014
+    },
+    {
+      "smell": "Brain Method",
+      "maintainable_files": 1,
+      "maintainable_rate": 0.004366812227074236,
+      "non_maintainable_files": 26,
+      "non_maintainable_rate": 0.4262295081967213,
+      "lift": 97.60655737704919,
+      "total_penalty": 126.0
+    },
+    {
+      "smell": "Excess Number of Function Arguments",
+      "maintainable_files": 4,
+      "maintainable_rate": 0.017467248908296942,
+      "non_maintainable_files": 13,
+      "non_maintainable_rate": 0.21311475409836064,
+      "lift": 12.200819672131148,
+      "total_penalty": 10.556250000000006
+    },
+    {
+      "smell": "Low Cohesion",
+      "maintainable_files": 6,
+      "maintainable_rate": 0.026200873362445413,
+      "non_maintainable_files": 6,
+      "non_maintainable_rate": 0.09836065573770492,
+      "lift": 3.7540983606557377,
+      "total_penalty": 4.199999999999999
+    },
+    {
+      "smell": "Code Duplication",
+      "maintainable_files": 1,
+      "maintainable_rate": 0.004366812227074236,
+      "non_maintainable_files": 8,
+      "non_maintainable_rate": 0.13114754098360656,
+      "lift": 30.032786885245905,
+      "total_penalty": 7.014999999999999
+    },
+    {
+      "smell": "Constructor Over-Injection",
+      "maintainable_files": 0,
+      "maintainable_rate": 0.0,
+      "non_maintainable_files": 6,
+      "non_maintainable_rate": 0.09836065573770492,
+      "lift": null,
+      "total_penalty": 2.70825
+    },
+    {
+      "smell": "Lines of Code in a Single File",
+      "maintainable_files": 0,
+      "maintainable_rate": 0.0,
+      "non_maintainable_files": 6,
+      "non_maintainable_rate": 0.09836065573770492,
+      "lift": null,
+      "total_penalty": 3.972
+    },
+    {
+      "smell": "Number of Functions in a Single Module",
+      "maintainable_files": 0,
+      "maintainable_rate": 0.0,
+      "non_maintainable_files": 3,
+      "non_maintainable_rate": 0.04918032786885246,
+      "lift": null,
+      "total_penalty": 1.443
+    }
+  ]
+}

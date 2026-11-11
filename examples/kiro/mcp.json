@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "codehealth": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/microbrewerGM/codehealth-mcp", "codehealth-mcp"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "code_health_score",
+        "code_health_review",
+        "explain_code_health",
+        "rules_config_list_thresholds",
+        "rules_config_validate"
+      ]
+    }
+  }
+}

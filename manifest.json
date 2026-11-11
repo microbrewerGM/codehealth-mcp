@@ -1,0 +1,58 @@
+{
+  "manifest_version": "0.4",
+  "name": "codehealth-mcp",
+  "display_name": "CodeHealth",
+  "version": "0.1.0",
+  "description": "Code Health 1-10 maintainability scores and code smell reviews for ~30 languages, with pre-commit and pull request quality gates.",
+  "long_description": "Scores source files 1-10 (Healthy >= 9, Warning >= 4, Alert < 4) and lists code smells such as Complex Method, Bumpy Road Ahead, Deep Nested Complexity and Code Duplication. Uses lizard and tree-sitter; PMD (optional, needs Java) adds copy-paste detection and Java God Class checks. All paths passed to the tools must be absolute.",
+  "author": {
+    "name": "microbrewerGM",
+    "url": "https://github.com/microbrewerGM"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microbrewerGM/codehealth-mcp"
+  },
+  "homepage": "https://github.com/microbrewerGM/codehealth-mcp",
+  "documentation": "https://github.com/microbrewerGM/codehealth-mcp#readme",
+  "support": "https://github.com/microbrewerGM/codehealth-mcp/issues",
+  "license": "MIT",
+  "keywords": ["code-quality", "maintainability", "code-smells", "refactoring", "static-analysis"],
+  "server": {
+    "type": "uv",
+    "entry_point": "src/codehealth/__main__.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": ["run", "--directory", "${__dirname}", "codehealth-mcp"],
+      "env": {
+        "CODEHEALTH_PMD_HOME": "${user_config.pmd_home}"
+      }
+    }
+  },
+  "tools": [
+    {"name": "code_health_score", "description": "Score one source file 1-10."},
+    {"name": "code_health_review", "description": "Score one file and list its code smells with fix hints."},
+    {"name": "pre_commit_code_health_safeguard", "description": "Quality gate for staged and modified files against HEAD."},
+    {"name": "analyze_change_set", "description": "Quality gate for a branch against its merge base."},
+    {"name": "rules_config_validate", "description": "Validate the repository rules file."},
+    {"name": "rules_config_list_thresholds", "description": "List thresholds and their defaults."},
+    {"name": "rules_config_set_rule", "description": "Set a rule weight in the rules file."},
+    {"name": "rules_config_set_threshold", "description": "Override a threshold in the rules file."},
+    {"name": "explain_code_health", "description": "Explain the model, a smell or the score bands."}
+  ],
+  "user_config": {
+    "pmd_home": {
+      "type": "directory",
+      "title": "PMD directory (optional)",
+      "description": "A PMD 7 pmd-bin-* directory (from `codehealth install-pmd`). Leave empty to use the default location or run without PMD.",
+      "required": false,
+      "default": ""
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "python": ">=3.12"
+    }
+  }
+}

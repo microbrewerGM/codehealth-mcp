@@ -1,0 +1,26 @@
+{
+  "formatVersion": 0,
+  "pmdVersion": "7.29.0",
+  "timestamp": "2026-11-11T11:20:23.411-08:00",
+  "files": [
+    {
+      "filename": "/work/GodClass.java",
+      "violations": [
+        {
+          "beginline": 4,
+          "begincolumn": 14,
+          "endline": 4,
+          "endcolumn": 20,
+          "description": "Possible God Class (WMC=56, ATFD=72, TCC=0.000%)",
+          "rule": "GodClass",
+          "ruleset": "Design",
+          "priority": 3,
+          "externalInfoUrl": "https://docs.pmd-code.org/snapshot/pmd_rules_java_design.html#godclass"
+        }
+      ]
+    }
+  ],
+  "suppressedViolations": [],
+  "processingErrors": [],
+  "configurationErrors": []
+}

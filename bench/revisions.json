@@ -1,0 +1,264 @@
+{
+  "cutoff": "2020-09-28",
+  "loc_column": "nos",
+  "projects": {
+    "argoUML": {
+      "repo": "https://github.com/argouml-tigris-org/argouml",
+      "label": "month-2020-09",
+      "commit": "6f06c727a17176556cde6e7edf255394e2334582",
+      "date": "2020-09-27",
+      "rows": 74,
+      "found": 74,
+      "missing": 0,
+      "loc_exact": 7,
+      "loc_within_10pct": 36,
+      "top_candidates": [
+        {
+          "label": "month-2020-09",
+          "commit": "6f06c727a17176556cde6e7edf255394e2334582",
+          "date": "2020-09-27",
+          "rows": 74,
+          "found": 74,
+          "missing": 0,
+          "loc_exact": 7,
+          "loc_within_10pct": 36
+        },
+        {
+          "label": "month-2020-07",
+          "commit": "b8cb3e1c156bdf47f8f604a7c23c88df62b6b43b",
+          "date": "2020-07-10",
+          "rows": 74,
+          "found": 74,
+          "missing": 0,
+          "loc_exact": 7,
+          "loc_within_10pct": 36
+        },
+        {
+          "label": "month-2020-05",
+          "commit": "fcbe6c6eb764525a7509d8bc8bdfa19aea551c9f",
+          "date": "2020-05-22",
+          "rows": 74,
+          "found": 74,
+          "missing": 0,
+          "loc_exact": 7,
+          "loc_within_10pct": 36
+        },
+        {
+          "label": "month-2020-04",
+          "commit": "6969f515d020addf401c1920d43855e3cd6f5152",
+          "date": "2020-04-19",
+          "rows": 74,
+          "found": 74,
+          "missing": 0,
+          "loc_exact": 7,
+          "loc_within_10pct": 36
+        },
+        {
+          "label": "month-2020-03",
+          "commit": "9f39f17d004608c73fcf5c9b173aeae29f8ab454",
+          "date": "2020-03-29",
+          "rows": 74,
+          "found": 74,
+          "missing": 0,
+          "loc_exact": 7,
+          "loc_within_10pct": 36
+        }
+      ]
+    },
+    "aoi": {
+      "repo": "https://github.com/ArtOfIllusion/ArtOfIllusion",
+      "label": "spm-bad",
+      "commit": "c1aac96fa2f5cbd9ee90dd8e56d5e526e3d3be0f",
+      "date": "2018-12-14",
+      "rows": 73,
+      "found": 70,
+      "missing": 3,
+      "loc_exact": 0,
+      "loc_within_10pct": 13,
+      "top_candidates": [
+        {
+          "label": "spm-bad",
+          "commit": "c1aac96fa2f5cbd9ee90dd8e56d5e526e3d3be0f",
+          "date": "2018-12-14",
+          "rows": 73,
+          "found": 70,
+          "missing": 3,
+          "loc_exact": 0,
+          "loc_within_10pct": 13
+        },
+        {
+          "label": "month-2020-09",
+          "commit": "a4f1ab9d358b6d4af43def2a9dbe2eef8402c930",
+          "date": "2020-09-26",
+          "rows": 73,
+          "found": 64,
+          "missing": 9,
+          "loc_exact": 0,
+          "loc_within_10pct": 13
+        },
+        {
+          "label": "3.2.0-b1",
+          "commit": "e75b1ca1bcf42e281aa969afb536bb7243c86b0f",
+          "date": "2020-09-09",
+          "rows": 73,
+          "found": 64,
+          "missing": 9,
+          "loc_exact": 0,
+          "loc_within_10pct": 13
+        },
+        {
+          "label": "month-2020-08",
+          "commit": "e06d27500ef4baa07d7b9462d3bdcd89b86637b3",
+          "date": "2020-08-20",
+          "rows": 73,
+          "found": 64,
+          "missing": 9,
+          "loc_exact": 0,
+          "loc_within_10pct": 13
+        },
+        {
+          "label": "month-2020-07",
+          "commit": "3680222feb1fb6b2e1614a5cc6e294d5a7a12b95",
+          "date": "2020-07-17",
+          "rows": 73,
+          "found": 64,
+          "missing": 9,
+          "loc_exact": 0,
+          "loc_within_10pct": 13
+        }
+      ]
+    },
+    "jsweet": {
+      "repo": "https://github.com/cincheo/jsweet",
+      "label": "3.0.0-RC4",
+      "commit": "4124c8f7320a18fcf9cba2cdb89c478cbe89dc82",
+      "date": "2020-09-08",
+      "rows": 73,
+      "found": 73,
+      "missing": 0,
+      "loc_exact": 35,
+      "loc_within_10pct": 48,
+      "top_candidates": [
+        {
+          "label": "3.0.0-RC4",
+          "commit": "4124c8f7320a18fcf9cba2cdb89c478cbe89dc82",
+          "date": "2020-09-08",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 35,
+          "loc_within_10pct": 48
+        },
+        {
+          "label": "month-2020-08",
+          "commit": "d5e9c01ff9e14dbdb6d52fadb33ab293367aadbe",
+          "date": "2020-08-31",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 35,
+          "loc_within_10pct": 48
+        },
+        {
+          "label": "2.4.0-RC1",
+          "commit": "7d42942707fd143e6b16a5d0600df631edc1f268",
+          "date": "2020-07-21",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 35,
+          "loc_within_10pct": 48
+        },
+        {
+          "label": "v2.3.8",
+          "commit": "97d619c4f4f24fccb87986f074bf2113174fe52f",
+          "date": "2020-06-04",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 35,
+          "loc_within_10pct": 48
+        },
+        {
+          "label": "3.0.0-RC3",
+          "commit": "f26177120c439a1e3b359919a05b4c5e93634d28",
+          "date": "2020-05-18",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 35,
+          "loc_within_10pct": 48
+        }
+      ]
+    },
+    "junit4": {
+      "repo": "https://github.com/junit-team/junit4",
+      "label": "r4.12",
+      "commit": "64155f8a9babcfcf4263cf4d08253a1556e75481",
+      "date": "2014-12-04",
+      "rows": 73,
+      "found": 73,
+      "missing": 0,
+      "loc_exact": 5,
+      "loc_within_10pct": 28,
+      "top_candidates": [
+        {
+          "label": "r4.12",
+          "commit": "64155f8a9babcfcf4263cf4d08253a1556e75481",
+          "date": "2014-12-04",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 5,
+          "loc_within_10pct": 28
+        },
+        {
+          "label": "month-2014-11",
+          "commit": "60aaf96322abf2071e4f93b2748723a56c5ee668",
+          "date": "2014-11-30",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 5,
+          "loc_within_10pct": 28
+        },
+        {
+          "label": "r4.12-beta-3",
+          "commit": "ceaafcafc7d7ac8d80509ab046acc7a472ddb515",
+          "date": "2014-11-09",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 5,
+          "loc_within_10pct": 28
+        },
+        {
+          "label": "month-2014-10",
+          "commit": "26f9ebac45e0ff95c72d356b98b64eaf3de4f618",
+          "date": "2014-10-21",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 5,
+          "loc_within_10pct": 28
+        },
+        {
+          "label": "month-2014-09",
+          "commit": "6cf8f1fa2f4428f1e96f6cd2eded743b6879859e",
+          "date": "2014-09-28",
+          "rows": 73,
+          "found": 73,
+          "missing": 0,
+          "loc_exact": 5,
+          "loc_within_10pct": 28
+        }
+      ]
+    }
+  },
+  "excluded": {
+    "diarymanagement": {
+      "rows": 11,
+      "reason": "not publicly available"
+    }
+  }
+}

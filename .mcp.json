@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "codehealth": {
+      "command": "uv",
+      "args": ["run", "codehealth-mcp"]
+    }
+  }
+}

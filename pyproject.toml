@@ -1,0 +1,77 @@
+[project]
+name = "codehealth-mcp"
+version = "0.1.0"
+description = "Maintainability scoring (Code Health 1-10) and code smell review for ~30 languages, as an MCP server and CLI for AI coding agents"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+authors = [
+    { name = "microbrewerGM" }
+]
+requires-python = ">=3.12"
+keywords = ["mcp", "model-context-protocol", "code-quality", "maintainability", "code-smells", "static-analysis", "ai-agents"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+dependencies = [
+    "defusedxml>=0.7.1",
+    "lizard>=1.26,<1.27",
+    "mcp>=2.3.0",
+    "platformdirs>=4.2",
+    "tree-sitter>=0.26.1",
+    "tree-sitter-language-pack<1",
+]
+
+[project.urls]
+Homepage = "https://github.com/microbrewerGM/codehealth-mcp"
+Repository = "https://github.com/microbrewerGM/codehealth-mcp"
+Issues = "https://github.com/microbrewerGM/codehealth-mcp/issues"
+
+[project.scripts]
+codehealth = "codehealth.cli:main"
+codehealth-mcp = "codehealth.server:main"
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/codehealth"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "bench/",
+    "scripts/",
+    "docs/",
+    "examples/",
+    "README.md",
+    "DESIGN.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "manifest.json",
+    "pyproject.toml",
+    "uv.lock",
+]
+exclude = ["bench/.cache/"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "pmd: needs a PMD 7 installation and Java (skipped when either is missing; see `codehealth install-pmd`)",
+]

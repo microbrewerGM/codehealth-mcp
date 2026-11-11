@@ -31,8 +31,22 @@ SYMLINK_MODE = "120000"
 GITLINK_MODE = "160000"
 
 
+# Hard ceiling on bytes read from an untrusted repository. The rules file's
+# file_max_bytes (default 2 MB) is enforced later by the analyzer; this guard
+# stops a huge blob or file from being loaded into memory at all.
+MAX_READ_BYTES = 16 * 1024 * 1024
+
+
 class GitError(RuntimeError):
     pass
+
+
+class ContentTooLargeError(ValueError):
+    """A blob or working-tree file is larger than MAX_READ_BYTES."""
+
+    def __init__(self, what: str, size: int | None = None):
+        shown = f"{size} bytes" if size is not None else f"over {MAX_READ_BYTES} bytes"
+        super().__init__(f"{what[:120]} is too large to analyze ({shown}; limit {MAX_READ_BYTES} bytes)")
 
 
 @dataclass(frozen=True)
@@ -155,8 +169,12 @@ def _parse_name_status(fields: list[str]) -> list[Change]:
 
 # ----- contents ----------------------------------------------------------------------
 def read_blob(repo: Path, oid: str) -> bytes:
-    """Raw blob bytes; ``cat-file blob`` applies no filters or textconv."""
-    return run(repo, "cat-file", "blob", check_ref(oid))
+    """Raw blob bytes; ``cat-file blob`` applies no filters or textconv. Size-checked first."""
+    oid = check_ref(oid)
+    size = int(run(repo, "cat-file", "-s", oid).strip() or b"0")
+    if size > MAX_READ_BYTES:
+        raise ContentTooLargeError(f"blob {oid}", size)
+    return run(repo, "cat-file", "blob", oid)
 
 
 def read_worktree(repo: Path, relpath: str) -> bytes | None:
@@ -164,7 +182,29 @@ def read_worktree(repo: Path, relpath: str) -> bytes | None:
     if not _is_plain_relpath(relpath):
         return None
     target = _regular_file(repo, Path(relpath).parts)
-    return target.read_bytes() if target is not None else None
+    if target is None:
+        return None
+    with open(target, "rb") as handle:  # bounded read: the file may grow after any size check
+        data = handle.read(MAX_READ_BYTES + 1)
+    if len(data) > MAX_READ_BYTES:
+        raise ContentTooLargeError(relpath)
+    return data
+
+
+def worktree_oid(repo: Path, relpath: str, fmt: str = "sha1") -> str | None:
+    """Blob id of a working-tree file, hashed in chunks so any size uses bounded memory."""
+    if not _is_plain_relpath(relpath):
+        return None
+    target = _regular_file(repo, Path(relpath).parts)
+    if target is None:
+        return None
+    digest = hashlib.new("sha256" if fmt == "sha256" else "sha1")
+    with open(target, "rb") as handle:
+        size = os.fstat(handle.fileno()).st_size
+        digest.update(b"blob %d\0" % size)
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def _is_plain_relpath(relpath: str) -> bool:

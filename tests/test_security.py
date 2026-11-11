@@ -139,3 +139,42 @@ def test_read_worktree_rejects_traversal(tmp_path):
     repo = tmp_path / "repo"
     for bad in ("../secret.py", "/etc/hosts", ".git/config", "./a.py", ""):
         assert read_worktree(repo, bad) is None
+
+
+def test_directive_scan_is_linear_on_hostile_comments():
+    hostile = "# " + "@codehealth(" * 200_000
+    start = time.perf_counter()
+    assert config._directive_smells(hostile) == set()
+    assert time.perf_counter() - start < 1.0
+
+
+def test_worktree_oid_matches_blob_oid(repo):
+    data = b"def f():\n    return 1\n" * 1000
+    (repo / "a.py").write_bytes(data)
+    assert gitrepo.worktree_oid(repo, "a.py") == gitrepo.blob_oid(data)
+
+
+def test_oversized_content_is_never_loaded(repo, monkeypatch):
+    (repo / "big.py").write_text("x = 1\n")
+    git(repo, "add", "big.py")
+    git(repo, "commit", "-q", "-m", "small")
+    monkeypatch.setattr(gitrepo, "MAX_READ_BYTES", 64)
+    (repo / "big.py").write_text("x = 1\n" * 100)  # 600 bytes > cap
+    with pytest.raises(gitrepo.ContentTooLargeError):
+        gitrepo.read_worktree(repo, "big.py")
+    summary = delta.pre_commit_safeguard(repo)
+    assert summary["quality_gate"] == "failed"
+    entry = summary["files"][0]
+    assert entry["verdict"] == "unknown" and "too large" in entry["error"]
+
+    git(repo, "add", "big.py")
+    git(repo, "commit", "-q", "-m", "big")
+    with pytest.raises(gitrepo.ContentTooLargeError):
+        gitrepo.read_blob(repo, git(repo, "rev-parse", "HEAD:big.py").strip())
+    git(repo, "checkout", "-q", "-b", "feature")
+    monkeypatch.setattr(gitrepo, "MAX_READ_BYTES", 16 * 1024 * 1024)
+    (repo / "big.py").write_text("x = 2\n" * 100)
+    git(repo, "commit", "-q", "-am", "edit")
+    monkeypatch.setattr(gitrepo, "MAX_READ_BYTES", 64)
+    result = delta.analyze_change_set(repo, "main")
+    assert result["files"][0]["verdict"] == "unknown"

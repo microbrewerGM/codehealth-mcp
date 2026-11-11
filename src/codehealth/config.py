@@ -26,7 +26,7 @@ CONFIG_PATHS = (Path(".codehealth/rules.json"),)
 DEFAULT_PATTERN = "**/*"
 DISABLE_ALL = "*"
 
-_DIRECTIVE = re.compile(r"@codehealth\(([^)]*)\)")
+_DIRECTIVE = re.compile(r"@codehealth\(([^)\n]{0,200})\)")  # bounded: comments come from untrusted repos
 _DISABLE = re.compile(r"disable\s*:\s*\"([^\"]+)\"")
 
 

@@ -145,6 +145,19 @@ def compare_sources(path: Path, old_text: str | None, new_text: str | None, rule
     return compare_changes([Change(path, old_text, new_text, rules)])[0]
 
 
+def _guarded(path: str, build) -> Change | FileDelta:
+    """Build a Change, or an 'unknown' FileDelta when a version is too large to read."""
+    try:
+        return build()
+    except gitrepo.ContentTooLargeError as error:
+        return FileDelta(path, UNKNOWN, None, None, error=str(error))
+
+
+def _compare_guarded(items: list[Change | FileDelta]) -> list[FileDelta]:
+    reviewed = iter(compare_changes([i for i in items if isinstance(i, Change)]))
+    return [next(reviewed) if isinstance(i, Change) else i for i in items]
+
+
 # ----- rules from git ---------------------------------------------------------------
 @dataclass
 class RulesSnapshot:
@@ -225,18 +238,23 @@ class _Pending:
 
     path: str
     old_oid: str | None
-    new_bytes: bytes | None
+    new_bytes: bytes | gitrepo.ContentTooLargeError | None
 
 
 def _worktree_changes(repo: Path, base: dict[str, str], paths: set[str]) -> list[_Pending]:
     fmt = gitrepo.object_format(repo)
     pending = []
     for path in sorted(p for p in paths if is_supported(p)):
-        data = gitrepo.read_worktree(repo, path)
-        new_oid = gitrepo.blob_oid(data, fmt) if data is not None else None
-        if new_oid != base.get(path):
-            pending.append(_Pending(path, base.get(path), data))
+        if gitrepo.worktree_oid(repo, path, fmt) != base.get(path):
+            pending.append(_Pending(path, base.get(path), _read_or_error(repo, path)))
     return _pair_renames(pending, fmt)
+
+
+def _read_or_error(repo: Path, path: str) -> bytes | gitrepo.ContentTooLargeError | None:
+    try:
+        return gitrepo.read_worktree(repo, path)
+    except gitrepo.ContentTooLargeError as error:
+        return error
 
 
 def _pair_renames(pending: list[_Pending], fmt: str) -> list[_Pending]:
@@ -254,7 +272,18 @@ def _not_renamed_away(item: _Pending, unpaired_removals: dict) -> bool:
 
 
 def _is_added(item: _Pending) -> bool:
-    return item.old_oid is None and item.new_bytes is not None
+    """A new path whose content was read (too-large files are never rename-paired)."""
+    return item.old_oid is None and isinstance(item.new_bytes, bytes)
+
+
+def _pending_change(repo: Path, p: _Pending, rules: RulesSnapshot) -> Change:
+    if isinstance(p.new_bytes, gitrepo.ContentTooLargeError):
+        raise p.new_bytes
+    return Change(Path(p.path), _blob_text(repo, p.old_oid), _text(p.new_bytes), rules.rules(p.path))
+
+
+def _pending_texts(changes: list[_Pending]) -> dict[str, str | None]:
+    return {path: _text(data) for path, data in _readable({p.path: p.new_bytes for p in changes}).items()}
 
 
 def pre_commit_safeguard(repo: Path) -> dict:
@@ -263,21 +292,20 @@ def pre_commit_safeguard(repo: Path) -> dict:
     base_rules = rules_at(repo, head, "HEAD")
     paths = set(head) | set(gitrepo.index_entries(repo))
     changes = _worktree_changes(repo, head, paths)
-    deltas = compare_changes(
-        [Change(Path(p.path), _blob_text(repo, p.old_oid), _text(p.new_bytes), base_rules.rules(p.path)) for p in changes]
-    )
+    deltas = _compare_guarded([_guarded(p.path, lambda p=p: _pending_change(repo, p, base_rules)) for p in changes])
     summary = summarize(deltas)
     _rules_warning(summary, base_rules, rules_in_worktree(repo))
-    _cross_file(summary, {p.path: _text(p.new_bytes) for p in changes})
+    _cross_file(summary, _pending_texts(changes))
     return summary
 
 
 def file_delta_against_ref(repo: Path, relpath: str, ref: str = "HEAD") -> FileDelta:
     """Old content from ``ref``, new content from the working tree."""
     entries = gitrepo.tree_entries(repo, ref) if gitrepo.has_head(repo) or ref != "HEAD" else {}
-    new = _text(gitrepo.read_worktree(repo, relpath))
     rules = rules_at(repo, entries, ref).rules(relpath)
-    return compare_sources(Path(relpath), _blob_text(repo, entries.get(relpath)), new, rules)
+    change = _guarded(relpath, lambda: Change(
+        Path(relpath), _blob_text(repo, entries.get(relpath)), _text(gitrepo.read_worktree(repo, relpath)), rules))
+    return _compare_guarded([change])[0]
 
 
 @dataclass(frozen=True)
@@ -286,13 +314,16 @@ class _TreeDiff:
 
     repo: Path
     old_entries: dict[str, str]
-    new_texts: dict[str, str | None]
+    new_texts: dict[str, str | gitrepo.ContentTooLargeError | None]
     rules: RulesSnapshot
 
     def change(self, c: gitrepo.Change) -> Change:
         path = c.new_path or c.old_path
         old = _blob_text(self.repo, self.old_entries.get(c.old_path or ""))
-        return Change(Path(path), old, self.new_texts.get(c.new_path or ""), self.rules.rules(path))
+        new = self.new_texts.get(c.new_path or "")
+        if isinstance(new, gitrepo.ContentTooLargeError):
+            raise new
+        return Change(Path(path), old, new, self.rules.rules(path))
 
 
 def analyze_change_set(repo: Path, base_ref: str) -> dict:
@@ -300,13 +331,29 @@ def analyze_change_set(repo: Path, base_ref: str) -> dict:
     base = gitrepo.merge_base(repo, base_ref)
     old_entries, new_entries = gitrepo.tree_entries(repo, base), gitrepo.tree_entries(repo, "HEAD")
     changes = [c for c in gitrepo.tree_changes(repo, base, "HEAD") if is_supported(c.new_path or c.old_path)]
-    new_texts = {c.new_path: _blob_text(repo, new_entries.get(c.new_path)) for c in changes if c.new_path}
+    new_texts = _new_texts(repo, new_entries, changes)
     diff = _TreeDiff(repo, old_entries, new_texts, rules_at(repo, old_entries, base))
-    summary = summarize(compare_changes([diff.change(c) for c in changes]))
+    summary = summarize(_compare_guarded([_guarded(c.new_path or c.old_path, lambda c=c: diff.change(c)) for c in changes]))
     summary["merge_base"] = base
     _rules_warning(summary, diff.rules, rules_at(repo, new_entries, "HEAD"))
-    _cross_file(summary, new_texts)
+    _cross_file(summary, _readable(new_texts))
     return summary
+
+
+def _new_texts(repo: Path, entries: dict[str, str], changes: list[gitrepo.Change]) -> dict:
+    return {c.new_path: _blob_text_or_error(repo, entries.get(c.new_path)) for c in changes if c.new_path}
+
+
+def _readable(texts: dict) -> dict[str, str | None]:
+    """Drop versions that were too large to read."""
+    return {path: text for path, text in texts.items() if not isinstance(text, Exception)}
+
+
+def _blob_text_or_error(repo: Path, oid: str | None) -> str | gitrepo.ContentTooLargeError | None:
+    try:
+        return _blob_text(repo, oid)
+    except gitrepo.ContentTooLargeError as error:
+        return error
 
 
 def _cross_file(summary: dict, texts: dict[str, str | None]) -> None:
